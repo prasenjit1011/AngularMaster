@@ -1,4 +1,4 @@
 export const environment = {
     server: false,
-    apiHost: false ? 'http://localhost:3000' : 'https://dnm6jn-3000.csb.app'
+    apiHost: false ? 'http://localhost:3000' : 'https://mzxy8s-3000.csb.app'
 };
