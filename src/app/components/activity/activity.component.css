@@ -17,6 +17,8 @@ a{
 
 
 .documents {
+    vertical-align: top;
+
   width: 30%;
   padding: 10px;
 }
