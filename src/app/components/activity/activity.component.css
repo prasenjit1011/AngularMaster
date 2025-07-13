@@ -16,13 +16,14 @@ a{
 }
 
 
-.documents{
+.documents {
   width: 30%;
   padding: 10px;
 }
 
-.documents li{
-  text-align:left;
+.documents li {
+  text-align: left;
+  margin-bottom: 8px;
 }
 
 
