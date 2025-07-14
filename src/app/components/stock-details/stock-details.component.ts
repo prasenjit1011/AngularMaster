@@ -71,8 +71,13 @@ export class StockDetailsComponent {
 
   apidata(){
     this.sid = this.route.snapshot.params['sid'];    
-    console.log('Sid :::: ', this.sid);
-  
+    console.log('Iam Sid :::: ', this.sid);
+
+    
+    //db.collection.updateMany({}, {$rename:{"oldField":"newField"}}, false, true)
+
+
+
     let apiUrl = this.apiHost+'/stock/details/'+this.sid;
     this.http
         .get(apiUrl)
@@ -87,7 +92,7 @@ export class StockDetailsComponent {
           this.sharePrice   = data['shareDetails'] ? data['shareDetails']['ltp'] : 0,
 
           this.nseCode      = data['shareDetails'] ? data['shareDetails']['nseCode'] : 0,
-          this.iciciCode    = data['shareDetails'] ? data['shareDetails']['iciciCode'] : 0,
+          this.iciciCode    = data['shareDetails'] ? data['shareDetails']['stock'] : 0,
           this.growCode     = data['shareDetails'] ? data['shareDetails']['growCode'] : 0,
 
           this.transaction  = data['transactionDetails'],

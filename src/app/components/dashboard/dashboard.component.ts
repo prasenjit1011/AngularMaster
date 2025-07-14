@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
-import { Route, RouterModule } from '@angular/router';
+import { ActivatedRoute, Route, RouterModule } from '@angular/router';
 import { environment } from './../../../environments/environment';
 
 @Component({
@@ -12,20 +12,48 @@ import { environment } from './../../../environments/environment';
 export class DashboardComponent implements OnInit  {
 
   apiHost = environment.apiHost;
-  constructor(private http: HttpClient, public datepipe: DatePipe){
+  rank = undefined;
+  //private route: ActivatedRoute
+  constructor(private http: HttpClient, public datepipe: DatePipe, private route: ActivatedRoute){
     
   }
 
   dtOptions: DataTables.Settings = {};
   ngOnInit(){
+    
+    this.route.queryParams.subscribe((params) => {
+      this.rank = params['rank'] ?? 0;
+    });
+
     this.dtOptions = {
+      pagingType:"simple_numbers",
+      scrollX:true,
+      scrollY:"600",
+      autoWidth:true,
+      
+
       ajax:
       {
-        url: this.apiHost+'/stock/list',
+        url: this.apiHost+'/stock/list?rank='+this.rank,
         dataSrc: 'apiData',
         processData: true
       },
+      
+
+      
+      createdRow: function(row, data, dataIndex) {
+
+        //return false;
+        if (data.toString().indexOf('Total') > -1) {
+          //myTable.rows($(row)).remove().draw();
+        }
+      },
       rowCallback: (row: Node, data: any[] | Object, index: number) => {
+        if(data['rank'] > 2){
+          console.log('----- here ------', 100*Math.random());
+          //return false;
+        }
+
         if(data['change'] > 5){
           $('td:nth-child(3)', row).css('background-color', '#0F0')
         }
@@ -33,17 +61,28 @@ export class DashboardComponent implements OnInit  {
           $('td:nth-child(3)', row).css('background-color', '#e88320')
         }
 
-        $('td:nth-child(1)', row).html('<a href="">hello</a>');
+        if(true){
+          $('td:nth-child(9)', row).css('background-color', '#7eebeb')
+        }
+
+        // $('td:nth-child(1)', row).html('<a href="">hello</a>');
         $('td:nth-child(1)', row).html('<a href="/details/'+data['sid']+'" target="_blank">'+data['share_name']+'</a>');
 
-        console.log(data);
-      },
+        //$('td:nth-child(2)', row).html(data['stock']??'NA');
+        //console.log(data);
+      },      
       columns: [{
           title: 'Name',
           data: 'sid'
         }, {
+          title: 'iciciCode',
+          data: 'stock'
+        }, {
           title: 'SID',
-          data: 'sid'          
+          data: 'sid'     
+        }, {
+          title: 'nseCode',
+          data: 'nseCode' 
         }, {
           title: 'Rank',
           data: 'rank'          

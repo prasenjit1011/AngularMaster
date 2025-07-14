@@ -17,9 +17,10 @@
 }
 table{
     /*margin: 0 10px;*/
-    width: 100%;
+    /*width: 200%;*/
     border: 1px solid;
     border-collapse: collapse;
+    background-color: #FFF;
 }
 th, td{
     /*width: 150px;*/
