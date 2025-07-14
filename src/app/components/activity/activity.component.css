@@ -15,6 +15,21 @@ a{
     margin: 2px 17px;
 }
 
+
+.documents {
+    vertical-align: top;
+
+  width: 30%;
+  padding: 10px;
+}
+
+.documents li {
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+
+
 .nifty50 td{
     text-align: left;
 }
