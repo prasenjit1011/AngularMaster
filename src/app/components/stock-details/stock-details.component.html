@@ -19,6 +19,13 @@
                         </a> | 
                     </span>
                 </div>
+                <div class="shareUrls">
+                    <span *ngFor="let arr of stockAPI">
+                        <a target="_blank" href="{{arr['val']}}" style="margin: 4px; color:blue;">
+                            {{arr['key']}}
+                        </a> | 
+                    </span>
+                </div>
                 
             </div>
         </td>

@@ -32,6 +32,7 @@ export class StockDetailsComponent {
   holdingCMP    = 0;
   apiHost       = environment.apiHost;
   stockUrlArr   = [];
+  stockAPI      = [];
 
   updSid        = '';
   updStockCode  = '';
@@ -47,6 +48,8 @@ export class StockDetailsComponent {
   growUrl       = "https://www.google.com/search?q=groww+";
   m4mUrl        = "https://www.google.com/search?q=moneyworks4me+"+this.shareName;;
   tapiUrl       = "https://quotes-api.tickertape.in/quotes?sids="+this.sid;;
+  tapiUrlMax    = "https://api.tickertape.in/stocks/charts/inter/"+this.sid+"?duration=max";
+  tapiUrl5y     = "https://api.tickertape.in/stocks/charts/inter/"+this.sid+"?duration=5y";
 
 
   constructor(private route:ActivatedRoute, private http: HttpClient, public datepipe: DatePipe){
@@ -65,8 +68,10 @@ export class StockDetailsComponent {
     this.stockUrlArr.push({key:'moneyCtrl', val:"https://www.google.com/search?q=moneycontrol+"+this.shareName});;
     this.stockUrlArr.push({key:'growUrl', val:"https://www.google.com/search?q=groww+"+this.shareName});;
     this.stockUrlArr.push({key:'m4m', val:"https://www.google.com/search?q=moneyworks4me+"+this.shareName});;
-    this.stockUrlArr.push({key:'tapi', val:"https://quotes-api.tickertape.in/quotes?sids="+this.sid});;
 
+    this.stockAPI.push({key:'tapi', val:"https://quotes-api.tickertape.in/quotes?sids="+this.sid});
+    this.stockAPI.push({key:'tapi5y', val:"https://api.tickertape.in/stocks/charts/inter/"+this.sid+"?duration=5y"});
+    this.stockAPI.push({key:'tapiMax', val:"https://api.tickertape.in/stocks/charts/inter/"+this.sid+"?duration=max"});
   }
 
   apidata(){
